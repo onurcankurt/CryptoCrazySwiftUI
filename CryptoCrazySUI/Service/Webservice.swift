@@ -10,7 +10,7 @@ import Foundation
 class Webservice {
     
     
-    func downloadCurrencies(url : URLRequest, completion: @escaping (Result<[CryptoCurrency]?, DownloaderError>) -> Void) {
+    func downloadCurrencies(url : URL, completion: @escaping (Result<[CryptoCurrency]?, DownloaderError>) -> Void) {
         
         URLSession.shared.dataTask(with: url) { data, response, error in
             

@@ -15,7 +15,7 @@ class CryptoListViewModel : ObservableObject {
     
     let webservice = Webservice()
     
-    func downloadCryptos(url : URLRequest) {
+    func downloadCryptos(url : URL) {
         
         webservice.downloadCurrencies(url: url) { result in
             
