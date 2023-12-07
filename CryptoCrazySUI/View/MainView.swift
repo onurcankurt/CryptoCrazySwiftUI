@@ -30,7 +30,17 @@ struct MainView: View {
                         .foregroundStyle(.black)
                         .frame(maxWidth: .infinity, alignment: .leading)
                 }
-            }.navigationTitle(Text("Crypto Crazy"))
+            }.toolbar(content: {
+                Button(action: {
+                    Task.init {
+                        //cryptoListViewModel.cryptoList = []
+                        await cryptoListViewModel.downloadCryptosContinuation(url: URL(string: "https://raw.githubusercontent.com/atilsamancioglu/K21-JSONDataSet/master/crypto.json")!)
+                    }
+                }, label: {
+                    Text("Refresh")
+                })
+            })
+            .navigationTitle(Text("Crypto Crazy"))
         }.task {
             await cryptoListViewModel.downloadCryptosContinuation(url: URL(string: "https://raw.githubusercontent.com/atilsamancioglu/K21-JSONDataSet/master/crypto.json")!)
         }

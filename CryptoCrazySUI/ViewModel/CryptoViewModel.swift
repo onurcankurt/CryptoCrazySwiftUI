@@ -7,8 +7,7 @@
 
 import Foundation
 
-// https://raw.githubusercontent.com/atilsamancioglu/K21-JSONDataSet/master/crypto.json
-
+@MainActor
 class CryptoListViewModel : ObservableObject {
     
     @Published var cryptoList = [CryptoViewModel]()
@@ -19,9 +18,9 @@ class CryptoListViewModel : ObservableObject {
         
         do {
             let cryptos =  try await webservice.downloadCurrenciesContinuation(url: url)
-            DispatchQueue.main.async {
-                self.cryptoList = cryptos.map(CryptoViewModel.init)
-            }
+            //DispatchQueue.main.async {
+            self.cryptoList = cryptos.map(CryptoViewModel.init)
+            //}
         } catch {
             print(error)
         }
